@@ -6,6 +6,8 @@ import vn.phatbee.ltwebst2.dao.impl.UserDaoImpl;
 import vn.phatbee.ltwebst2.models.UserModel;
 import vn.phatbee.ltwebst2.services.IUserService;
 
+import java.sql.Date;
+
 public class UserService extends DBConnectSQL implements IUserService {
     // Lay toan bo trong Dao
     IUserDao userDao = new UserDaoImpl();
@@ -23,6 +25,38 @@ public class UserService extends DBConnectSQL implements IUserService {
     @Override
     public UserModel findByUsername(String username) {
         return userDao.findByUsername(username);
+    }
+
+    @Override
+    public void insert(UserModel user) {
+        userDao.insert(user);
+    }
+
+    @Override
+    public boolean register(String username, String email, String fullname, String password, String phone) {
+        if(userDao.checkExistUsername(username)){
+            return false;
+        }
+        long milis = System.currentTimeMillis();
+        Date date = new Date(milis);
+        userDao.insert(new UserModel(username, email, fullname, password, null, 1, phone, date));
+        return true;
+
+    }
+
+    @Override
+    public boolean checkExistEmail(String email) {
+        return userDao.checkExistEmail(email);
+    }
+
+    @Override
+    public boolean checkExistUsername(String username) {
+        return userDao.checkExistUsername(username);
+    }
+
+    @Override
+    public boolean checkExistPhone(String phone) {
+        return userDao.checkExistPhone(phone);
     }
 
 }

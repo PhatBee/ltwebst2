@@ -11,6 +11,11 @@
     <title>Title</title>
 </head>
 <body>
-    Trang chủ của User
+
+<!-- Chèn topbar -->
+<header>
+    <%@include file="topbar.jsp" %>
+</header>
+Trang chủ của User
 </body>
 </html>

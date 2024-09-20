@@ -52,6 +52,7 @@ public class LogInController extends HttpServlet {
         if(user!=null){
             HttpSession session = req.getSession(true);
             session.setAttribute("account", user);
+            System.out.println(session.getAttribute("account"));
             if(isRememberMe){
                 saveRemeberMe(resp, username);
             }

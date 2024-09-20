@@ -117,6 +117,66 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao {
         return null;
     }
 
+    @Override
+    public boolean checkExistUsername(String username) {
+        boolean duplicate = false;
+        String query = "select * from users where username = ?";
+
+        try {
+            conn = super.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, username);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                duplicate = true;
+            }
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {}
+        return duplicate;
+    }
+
+    @Override
+    public boolean checkExistEmail(String email) {
+        boolean duplicate = false;
+        String query = "select * from users where email = ?";
+
+        try {
+            conn = super.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, email);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                duplicate = true;
+            }
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {}
+        return duplicate;
+    }
+
+    @Override
+    public boolean checkExistPhone(String phone) {
+        boolean duplicate = false;
+        String query = "select * from users where phone = ?";
+
+        try {
+            conn = super.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, phone);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                duplicate = true;
+            }
+            ps.close();
+            conn.close();
+
+        } catch (Exception e) {}
+        return duplicate;
+    }
+
     public static void main(String[] args) {
         UserDaoImpl dao = new UserDaoImpl();
         UserModel user2 = dao.findById(1);

@@ -11,10 +11,6 @@
     <title>Title</title>
 </head>
 <body>
-<!-- Chèn topbar -->
-<header>
-    <%@include file="/views/topbar.jsp" %>
-</header>
     Trang chủ của Admin
 </body>
 </html>
