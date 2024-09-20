@@ -16,6 +16,10 @@
 <body>
 <form action="/ltwebst2/login" method="post">
 
+    <c:if test="${alert !=null}">
+        <h3 class="alert alert danger">${alert}</h3>
+    </c:if>
+
     <div class="container">
         <label for="uname"><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="uname" required>

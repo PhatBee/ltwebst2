@@ -6,7 +6,7 @@ import vn.phatbee.ltwebst2.dao.impl.UserDaoImpl;
 import vn.phatbee.ltwebst2.models.UserModel;
 import vn.phatbee.ltwebst2.services.IUserService;
 
-public class UserServiceImpl extends DBConnectSQL implements IUserService {
+public class UserService extends DBConnectSQL implements IUserService {
     // Lay toan bo trong Dao
     IUserDao userDao = new UserDaoImpl();
 
