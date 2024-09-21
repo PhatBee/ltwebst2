@@ -58,8 +58,7 @@ public class LogInController extends HttpServlet {
             }
             resp.sendRedirect(req.getContextPath()+"/waiting");
         }else{
-            alertMsg =
-                    "Tài khoản hoặc mật khẩu không đúng";
+            alertMsg = "Tài khoản hoặc mật khẩu không đúng";
             req.setAttribute("alert", alertMsg);
             req.getRequestDispatcher("/views/login.jsp").forward(req, resp);
         }

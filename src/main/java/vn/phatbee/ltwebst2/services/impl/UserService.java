@@ -33,13 +33,13 @@ public class UserService extends DBConnectSQL implements IUserService {
     }
 
     @Override
-    public boolean register(String username, String email, String fullname, String password, String phone) {
-        if(userDao.checkExistUsername(username)){
+    public boolean register(String username, String password, String email, String fullname, String phone) {
+        if (userDao.checkExistUsername(username)) {
             return false;
         }
         long milis = System.currentTimeMillis();
         Date date = new Date(milis);
-        userDao.insert(new UserModel(username, email, fullname, password, null, 1, phone, date));
+        userDao.insert(new UserModel(username, email, fullname, password, null, 2, phone, date));
         return true;
 
     }
@@ -59,4 +59,8 @@ public class UserService extends DBConnectSQL implements IUserService {
         return userDao.checkExistPhone(phone);
     }
 
+    @Override
+    public boolean updatePassword(String username, String newPassword) {
+        return userDao.updatePassword(username, newPassword);
+    }
 }

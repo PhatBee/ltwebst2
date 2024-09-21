@@ -6,6 +6,7 @@ import jakarta.servlet.http.*;
 import vn.phatbee.ltwebst2.services.IUserService;
 import vn.phatbee.ltwebst2.services.impl.UserService;
 import vn.phatbee.ltwebst2.utils.Constant;
+import vn.phatbee.ltwebst2.utils.Email;
 
 import java.io.IOException;
 
@@ -41,11 +42,19 @@ public class RegisterController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+        String confirmPassword = req.getParameter("confirmpassword");
         String email = req.getParameter("email");
         String fullname = req.getParameter("fullname");
         String phone = req.getParameter("phone");
         IUserService service = new UserService();
         String alertMsg = "";
+
+        if(!password.equals(confirmPassword)) {
+            alertMsg = "Vui lòng xác nhận lại mật khẩu";
+            req.setAttribute("alert", alertMsg);
+            req.getRequestDispatcher(Constant.REGISTER).forward(req, resp);
+            return;
+        }
 
         if (service.checkExistEmail(email)) {
             alertMsg = "Email đã tồn tại!";
@@ -59,6 +68,17 @@ public class RegisterController extends HttpServlet {
             req.getRequestDispatcher(Constant.REGISTER).forward(req, resp);
             return;
         }
+
+        if (service.checkExistPhone(phone)) {
+            alertMsg = "Số điện thoại đã tồn tại!";
+            req.setAttribute("alert", alertMsg);
+            req.getRequestDispatcher(Constant.REGISTER).forward(req, resp);
+            return;
+        }
+
+        Email sm = new Email();
+        // get the digit 6 code
+        String code = sm.getRandom();
 
         boolean isSuccess = service.register(username, password, email, fullname, phone);
         if (isSuccess) {

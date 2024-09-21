@@ -177,6 +177,31 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao {
         return duplicate;
     }
 
+    @Override
+    public void insertRegister(UserModel user) {
+
+    }
+
+    @Override
+    public boolean updatePassword(String username, String newPassword) {
+        boolean result = false;
+        String query = "update users set password = ? where username = ?";
+
+        try {
+            conn = super.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.setString(1, newPassword);
+            ps.setString(2, username);
+            ps.executeUpdate();
+            result = true;
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         UserDaoImpl dao = new UserDaoImpl();
         UserModel user2 = dao.findById(1);

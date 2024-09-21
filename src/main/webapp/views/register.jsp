@@ -32,6 +32,9 @@
         <label for="password"><b>Password</b></label>
         <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
+        <label for="confirmpassword"><b>Confirm Password</b></label>
+        <input type="password" placeholder="Confirm Password" name="confirmpassword" id="confirmpassword" required>
+
         <label for="email"><b>Email</b></label>
         <input type="email" placeholder="Enter Email" name="email" id="email" required>
 

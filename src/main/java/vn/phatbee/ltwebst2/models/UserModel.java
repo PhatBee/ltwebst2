@@ -15,6 +15,7 @@ public class UserModel implements Serializable {
     private int roleid;
     private String phone;
     private Date date;
+    private String code;
 
     public UserModel() {
         super();
@@ -43,6 +44,22 @@ public class UserModel implements Serializable {
         this.roleid = roleid;
         this.phone = phone;
         this.date = date;
+    }
+
+    public UserModel(String username, String email, String fullname, String password, int roleid, String code) {
+        this.username = username;
+        this.email = email;
+        this.fullname = fullname;
+        this.password = password;
+        this.roleid = roleid;
+        this.code = code;
+    }
+
+    public UserModel(String username, String email, String fullname, String code) {
+        this.username = username;
+        this.email = email;
+        this.fullname = fullname;
+        this.code = code;
     }
 
     public int getId() {
@@ -115,6 +132,14 @@ public class UserModel implements Serializable {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     @Override
