@@ -9,48 +9,91 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-<form action="/ltwebst2/register" method="post">
-
-    <c:if test="${alert !=null}">
-    <h3 class="alert alert danger">${alert}</h3>
-    </c:if>
 
 
-    <div class="container">
-        <h1>Register</h1>
-        <p>Please fill in this form to create an account.</p>
-        <hr>
+<!-- BEGIN CONTENT -->
+<div class="col-md-9 col-sm-9">
+    <h1>Create an account</h1>
+    <div class="content-form-page">
+        <div class="row">
+            <div class="col-md-7 col-sm-7">
+                <c:if test="${alert !=null}">
+                    <h3 class="alert alert danger">${alert}</h3>
+                </c:if>
+                <form action="/ltwebst2/register" method="post" class="form-horizontal" role="form">
+                    <fieldset>
+                        <legend>Your personal details</legend>
+                        <div class="form-group">
+                            <label for="fullname" class="col-lg-4 control-label">Full Name <span class="require">*</span></label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="fullname" name="fullname" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="col-lg-4 control-label">Phone <span class="require">*</span></label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="phone" name="phone" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="col-lg-4 control-label">Email <span class="require">*</span></label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="email" name="email" required>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Your account</legend>
+                        <div class="form-group">
+                            <label for="username" class="col-lg-4 control-label">Username <span class="require">*</span></label>
+                            <div class="col-lg-8">
+                                <input type="text" class="form-control" id="username" name="username" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-lg-4 control-label">Password <span class="require">*</span></label>
+                            <div class="col-lg-8">
+                                <input type="password" class="form-control" id="password" name="password" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmpassword" class="col-lg-4 control-label">Confirm password <span class="require">*</span></label>
+                            <div class="col-lg-8">
+                                <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" required>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <fieldset>
+                        <legend>Newsletter</legend>
+                        <div class="checkbox form-group">
+                            <label>
+                                <div class="col-lg-4 col-sm-4">Singup for Newsletter</div>
+                                <div class="col-lg-8 col-sm-8">
+                                    <input type="checkbox">
+                                </div>
+                            </label>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                        <div class="col-lg-8 col-md-offset-4 padding-left-0 padding-top-20">
+                            <button type="submit" class="btn btn-primary">Create an account</button>
+                            <button type="button" class="btn btn-default">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4 col-sm-4 pull-right">
+                <div class="form-info">
+                    <h2><em>Important</em> Information</h2>
+                    <p>Lorem ipsum dolor ut sit ame dolore  adipiscing elit, sed sit nonumy nibh sed euismod ut laoreet dolore magna aliquarm erat sit volutpat. Nostrud exerci tation ullamcorper suscipit lobortis nisl aliquip  commodo quat.</p>
 
-        <label for="username"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" name="username" id="username" required>
+                    <p>Duis autem vel eum iriure at dolor vulputate velit esse vel molestie at dolore.</p>
 
-        <label for="password"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="password" id="password" required>
-
-        <label for="confirmpassword"><b>Confirm Password</b></label>
-        <input type="password" placeholder="Confirm Password" name="confirmpassword" id="confirmpassword" required>
-
-        <label for="email"><b>Email</b></label>
-        <input type="email" placeholder="Enter Email" name="email" id="email" required>
-
-        <label for="fullname"><b>Full Name</b></label>
-        <input type="fullname" placeholder="Enter Full name" name="fullname" id="fullname" required>
-
-        <label for="phone"><b>Phone number</b></label>
-        <input type="phone" placeholder="Enter Phone Number" name="phone" id="phone" required>
-        <hr>
-
-        <button type="submit" class="registerbtn">Register</button>
+                    <button type="button" class="btn btn-default">More details</button>
+                </div>
+            </div>
+        </div>
     </div>
+</div>
+<!-- END CONTENT -->
 
-    <div class="container signin">
-        <p>Already have an account? <a href="${pageContext.request.contextPath}/login">Sign in</a>.</p>
-    </div>
-
-</body>
-</html>

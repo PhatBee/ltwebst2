@@ -26,6 +26,7 @@ import static vn.phatbee.ltwebst2.utils.Constant.UPLOAD_DIRECTORY;
 public class ProfileController extends HttpServlet {
     private static final long serialVersionUID = 1L;
     IUserService service = new UserService();
+    UserModel user = new UserModel();
 
     private String getFileName(Part part) {
         for (String content : part.getHeader("content-disposition").split(";")) {
@@ -46,19 +47,24 @@ public class ProfileController extends HttpServlet {
         //String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY; //upload vào
         // thư mục project
 
+        String username = req.getParameter("username");
         File uploadDir = new File(uploadPath);
         if (!uploadDir.exists())
             uploadDir.mkdir();
         try {
             String fileName = "";
             for (Part part : req.getParts()) {
-                fileName = getFileName(part);
-                part.write(uploadPath + File.separator + fileName);
+                String partName = part.getName();
+                if(partName.equals("image")){
+                    fileName = getFileName(part);
+                    part.write(uploadPath + File.separator + fileName);
+                }
             }
+
             req.setAttribute("message", "File " + fileName + " has uploaded successfully!");
 
             // Cap nhat database
-            UserModel user = new UserModel();
+            user.setUsername(username);
             user.setImages(fileName);
             service.updateProfile(user);
 
