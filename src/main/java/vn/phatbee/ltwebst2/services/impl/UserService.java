@@ -63,4 +63,9 @@ public class UserService extends DBConnectSQL implements IUserService {
     public boolean updatePassword(String username, String newPassword) {
         return userDao.updatePassword(username, newPassword);
     }
+
+    @Override
+    public void updateProfile(UserModel user) {
+        userDao.updateProfile(user);
+    }
 }

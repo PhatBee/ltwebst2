@@ -17,4 +17,7 @@ public interface IUserDao {
 
     boolean updatePassword(String username, String newPassword);
 
+    void updateProfile(UserModel user);
+
+
 }

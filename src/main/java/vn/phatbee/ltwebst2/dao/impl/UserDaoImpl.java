@@ -202,6 +202,24 @@ public class UserDaoImpl extends DBConnectSQL implements IUserDao {
         return result;
     }
 
+    @Override
+    public void updateProfile(UserModel user) {
+        String sql = "update users set images = ? where username = ?";
+        try {
+
+            conn = super.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, user.getImages());
+            ps.setString(2, user.getUsername());
+
+            ps.executeUpdate();
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public static void main(String[] args) {
         UserDaoImpl dao = new UserDaoImpl();
         UserModel user2 = dao.findById(1);
