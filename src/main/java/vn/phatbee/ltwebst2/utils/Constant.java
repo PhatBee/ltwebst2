@@ -6,4 +6,6 @@ public class Constant {
     public static final String REGISTER = "/views/register.jsp";
     public static final String UPLOAD_DIRECTORY = "D:\\upload";
     public static final String DEFAULT_FILENAME = "default.file";
+    public static final String DIR = "D:\\upload";
+
 }
