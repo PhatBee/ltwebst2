@@ -65,7 +65,7 @@ public class CategoryController extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         String url = req.getRequestURI();
         if(url.contains("/admin/category/insert")){
-            // Lấy dữ liệu từ form
+            //  Lấy dữ liệu từ form
             String categoryname = req.getParameter("categoryname");
             String status = req.getParameter("status");
             int statuss = Integer.parseInt(status);
@@ -86,10 +86,13 @@ public class CategoryController extends HttpServlet {
                 Part part = req.getPart("images1");
                 if (part.getSize() > 0){
                     String fileName = Paths.get(part.getSubmittedFileName()).getFileName().toString();
+                    // Đổi tên file
                     int index = fileName.lastIndexOf(".");
                     String ext = fileName.substring(index + 1);
                     fname = System.currentTimeMillis() + "." + ext;
+                    // Upload file
                     part.write(uploadPath + "/" + fname);
+                    // Ghi tên file vào data
                     category.setImages(fname);
                 } else if (images != null) {
                     category.setImages(images);
@@ -122,6 +125,11 @@ public class CategoryController extends HttpServlet {
             category.setCategoryname(categoryname);
             category.setStatus(status);
 
+            // Lưu hình cũ
+            CategoryModel cateold = cateService.findById(categoryid);
+            String fileold = cateold.getImages();
+
+            // Xử lý images
             String fname = "";
             String uploadPath = UPLOAD_DIRECTORY; //upload vào thư mục bất kỳ
 
@@ -139,6 +147,8 @@ public class CategoryController extends HttpServlet {
                     category.setImages(fname);
                 } else if (images != null) {
                     category.setImages(images);
+                } else {
+                    category.setImages(fileold);
                 }
 
 

@@ -22,7 +22,7 @@
         <tr>
             <td>${STT.index+1 }</td>
 
-            <td>
+
                 <c:if test="${cate.images.substring(0,5)=='https'}">
                     <c:url value="${cate.images}" var="imgUrl"></c:url>
                 </c:if>
@@ -30,8 +30,8 @@
                 <c:if test="${cate.images.substring(0,5)!='https'}">
                     <c:url value="/image?fname=${cate.images}" var="imgUrl"></c:url>
                 </c:if>
-                <img height="150" width="200" src="${imgUrl}"/>
-            </td>
+             <td><img height="150" width="200" src="${imgUrl}"/></td>
+
             <td>${cate.categoryid }</td>
             <td>${cate.categoryname }</td>
             <td>
