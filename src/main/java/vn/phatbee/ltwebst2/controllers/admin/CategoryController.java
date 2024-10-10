@@ -36,7 +36,7 @@ public class CategoryController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /* JDBC
+        // JDBC
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         String url = req.getRequestURI();
@@ -61,8 +61,8 @@ public class CategoryController extends HttpServlet {
             resp.sendRedirect( req.getContextPath()+ "/admin/categories");
         }
 
-         */
 
+        /*
         // JPA
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
@@ -92,12 +92,14 @@ public class CategoryController extends HttpServlet {
             resp.sendRedirect( req.getContextPath()+ "/admin/categories");
         }
 
+         */
+
 
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /* JDBC
+        /// JDBC
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         String url = req.getRequestURI();
@@ -201,8 +203,9 @@ public class CategoryController extends HttpServlet {
 
         }
 
-         */
 
+
+        /*
         // JPA
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
@@ -305,5 +308,7 @@ public class CategoryController extends HttpServlet {
             // Trả về view
             resp.sendRedirect(req.getContextPath() + "/admin/categories");
         }
+
+         */
     }
 }
